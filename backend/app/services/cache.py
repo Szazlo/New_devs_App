@@ -27,7 +27,7 @@ async def get_revenue_summary(
     from app.services.reservations import calculate_total_revenue
     
     # Calculate revenue
-    result = await calculate_total_revenue(property_id, tenant_id)
+    result = await calculate_total_revenue(property_id, tenant_id, month=month, year=year)
     
     # Cache the result for 5 minutes
     await redis_client.setex(cache_key, 300, json.dumps(result))
